@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+
+    sms:
+        build:
+            context: .
+            dockerfile: Dockerfile-deno
+        container_name: "dolibarr_live_proxy"
+        environment:
+            - TZ=Europe/Amsterdam
+        env_file:
+            - .env
+        ports:
+            - 1993:1993
+        volumes:
+            - ./main.ts:/app/main.ts
+        working_dir: /app
+        command: denon run --unstable --allow-read --allow-write --allow-env --allow-net --allow-run main.ts
