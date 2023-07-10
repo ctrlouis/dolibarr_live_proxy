@@ -6,7 +6,6 @@ const DOLIBARR_API_BASE = Deno.env.get("DOLIBARR_API_BASE");
 const DOLIBARR_API_KEY = Deno.env.get("DOLIBARR_API_KEY");
 
 const handler = async (ctx) => {
-    console.log("handler");
     const baseUrl = new URL(ctx.request.url);
     const params = baseUrl.href.replace(baseUrl.origin,'');
     const fetchUrl = `https://${DOLIBARR_API_BASE}${params}`;
