@@ -6,11 +6,10 @@ const DOLIBARR_API_BASE = Deno.env.get("DOLIBARR_API_BASE");
 const DOLIBARR_API_KEY = Deno.env.get("DOLIBARR_API_KEY");
 
 const handler = async (ctx) => {
+    console.log("handler");
     const baseUrl = new URL(ctx.request.url);
     const params = baseUrl.href.replace(baseUrl.origin,'');
     const fetchUrl = `https://${DOLIBARR_API_BASE}${params}`;
-    console.log(fetchUrl);
-    console.log(DOLIBARR_API_KEY);
     try {
         const jsonResponse  = await fetch(fetchUrl, {
             method: "GET",
@@ -20,15 +19,16 @@ const handler = async (ctx) => {
             },
         });
         const jsonData = await jsonResponse.json();
-        ctx.response = jsonData;
+        console.log(jsonData);
+        ctx.response.headers.set("Content-Type", "application/json");
+        ctx.response.body = jsonData;
     } catch (error) {
-        console.error(error);
-        ctx.response = error.message;
+        ctx.response.body = error.message;
     }
 };
 
 const app = new Application();
-app.use(oakCors()); // Enable CORS for All Routes
+app.use(oakCors());
 app.use(handler);
 
 console.info(`Web server listening on port ${PORT}`);

@@ -2,7 +2,7 @@ normal := \e[0m
 bold := \e[1m
 grey := \e[2m
 
-docker_image_name := dolibarr_live_proxy
+docker_image_name := dolibarr_proxy
 
 all: list
 

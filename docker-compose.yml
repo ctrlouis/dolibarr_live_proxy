@@ -6,7 +6,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile-deno
-        container_name: "dolibarr_live_proxy"
+        container_name: "dolibarr_proxy"
         environment:
             - TZ=Europe/Amsterdam
         env_file:
