@@ -19,7 +19,6 @@ const handler = async (ctx) => {
             },
         });
         const jsonData = await jsonResponse.json();
-        console.log(jsonData);
         ctx.response.headers.set("Content-Type", "application/json");
         ctx.response.body = jsonData;
     } catch (error) {
