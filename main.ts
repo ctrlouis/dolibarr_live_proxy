@@ -1,6 +1,7 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
 
+const ORIGIN = Deno.env.get("ORIGIN") ? Deno.env.get("ORIGIN") : "*" ;
 const PORT = Deno.env.get("PORT") ? Number(Deno.env.get("PORT")) : 1993 ;
 const DOLIBARR_API_BASE = Deno.env.get("DOLIBARR_API_BASE");
 const DOLIBARR_API_KEY = Deno.env.get("DOLIBARR_API_KEY");
@@ -26,7 +27,7 @@ const handler = async (ctx) => {
 };
 
 const app = new Application();
-app.use(oakCors());
+app.use(oakCors({ origin: ORIGIN, }));
 app.use(handler);
 
 console.info(`Web server listening on port ${PORT}`);
