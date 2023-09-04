@@ -41,6 +41,8 @@ const handler = async (ctx) => {
 
 const app = new Application();
 app.use(oakCors({ origin: ORIGIN, }));
+app.use(logger.logger);
+app.use(logger.responseTime);
 app.use(handler);
 
 console.info(`Web server listening on port ${PORT}`);
