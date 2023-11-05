@@ -23,7 +23,7 @@ const handler = async (ctx) => {
         }
 
         const params = baseUrl.href.replace(baseUrl.origin,'');
-        const fetchUrl = `https://${DOLIBARR_API_BASE}${params}`;
+        const fetchUrl = `${DOLIBARR_API_BASE}${params}`;
         const jsonResponse  = await fetch(fetchUrl, {
             method: "GET",
             headers: {

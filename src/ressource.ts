@@ -31,11 +31,16 @@ const ressourceConditions = (ressourceName: string, url: string) => {
 const productsConditions = (url) => {
     let conditionsRespected = true;
 
-    if (DOLIBARR_CATEGORIE_REQUIRED) {
-        const regex = new RegExp("&category=[0-9]+", 'g');
-        const result = regex.exec(url);
-        if (!result) {
-            conditionsRespected = false;
+    const regex = new RegExp("\/[0-9]+$", 'g');
+    const isID = regex.exec(url);
+
+    if (!isID) {
+        if (DOLIBARR_CATEGORIE_REQUIRED) {
+            const regex = new RegExp("&category=[0-9]+", 'g');
+            const result = regex.exec(url);
+            if (!result) {
+                conditionsRespected = false;
+            }
         }
     }
     

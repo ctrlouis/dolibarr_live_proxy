@@ -1,4 +1,4 @@
-FROM denoland/deno:1.36.3
+FROM denoland/deno:1.38.0
 
 EXPOSE 80
 EXPOSE 443
